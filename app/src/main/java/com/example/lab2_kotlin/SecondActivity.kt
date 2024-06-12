@@ -2,12 +2,17 @@ package com.example.lab2_kotlin
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class SecondActivity : AppCompatActivity(), View.OnClickListener {
+    companion object {
+        private const val TAG = "SECOND_ACTIVITY"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.second)
@@ -54,7 +59,14 @@ class SecondActivity : AppCompatActivity(), View.OnClickListener {
             button.text = "1234567"
             button.setBackgroundColor(Color.BLACK)
         }
-
+        val button10: Button = findViewById(R.id.button10)
+        button10.setOnClickListener { v ->
+            Log.v(TAG, "button10 clicked")
+            Log.d(TAG, "button10 clicked")
+            Log.i(TAG, "button10 clicked")
+            Log.w(TAG, "button10 clicked")
+            Log.e(TAG, "button10 clicked")
+        }
     }
 
     inner class Foo : View.OnClickListener {
