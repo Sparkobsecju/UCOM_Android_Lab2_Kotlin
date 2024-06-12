@@ -6,9 +6,10 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val CALL_PHONE_PERMISSION_CHECK = 4321
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -50,7 +52,15 @@ class MainActivity : AppCompatActivity() {
                 Manifest.permission.CALL_PHONE
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            Toast.makeText(this,"need to set permission", Toast.LENGTH_SHORT).show()
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    this,
+                    Manifest.permission.CALL_PHONE
+                )
+            ) {
+                showDialog()
+            } else {
+                askForPermission()
+            }
         } else {
             realCallPhone()
         }
@@ -61,5 +71,22 @@ class MainActivity : AppCompatActivity() {
         intent.data = Uri.parse("tel:1234565")
         startActivity(intent)
     }
+
+    private fun showDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("Need a phone call?")
+            .setMessage("需要賦予權限，是否同意?")
+            .setPositiveButton("OK", { _, _ -> askForPermission() })
+            .setNeutralButton("No") { _, _ -> finish() }
+            .show()
+    }
+
+    private fun askForPermission() {
+        ActivityCompat.requestPermissions(
+            this, arrayOf(Manifest.permission.CALL_PHONE),
+            CALL_PHONE_PERMISSION_CHECK
+        )
+    }
+
 
 }
