@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -18,6 +19,7 @@ import androidx.core.view.WindowInsetsCompat
 class MainActivity : AppCompatActivity() {
     companion object {
         private const val CALL_PHONE_PERMISSION_CHECK = 4321
+        private const val TAG = "MAIN_ACTIVITY"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +30,10 @@ class MainActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+        val dayOfWeek = resources.getStringArray(R.array.day_of_week)
+        for (d in dayOfWeek) {
+            Log.v(TAG, d)
         }
     }
 
