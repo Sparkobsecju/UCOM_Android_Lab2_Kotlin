@@ -31,10 +31,14 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val sb = StringBuilder()
         val dayOfWeek = resources.getStringArray(R.array.day_of_week)
         for (d in dayOfWeek) {
             Log.v(TAG, d)
+            sb.append(d + ",")
         }
+        val tv1 = findViewById<TextView>(R.id.textView)
+        tv1.text = sb.toString()
     }
 
     fun doActivity(v: View) {
