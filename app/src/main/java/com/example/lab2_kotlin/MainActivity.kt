@@ -18,7 +18,7 @@ import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
     companion object {
-        private const val CALL_PHONE_PERMISSION_CHECK = 4321
+        private const val CALL_PHONE_PERMISSION_CHECK = 1314
         private const val TAG = "MAIN_ACTIVITY"
     }
 
