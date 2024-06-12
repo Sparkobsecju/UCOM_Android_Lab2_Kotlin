@@ -7,7 +7,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-class SecondActivity: AppCompatActivity(), View.OnClickListener {
+class SecondActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.second)
@@ -27,15 +27,19 @@ class SecondActivity: AppCompatActivity(), View.OnClickListener {
             ).show()
         }
         val button6: Button = findViewById(R.id.button6)
-        button6.setOnClickListener{
-            Toast.makeText(this, "Button 6 clicked",
-                Toast.LENGTH_SHORT).show()
+        button6.setOnClickListener {
+            Toast.makeText(
+                this, "Button 6 clicked",
+                Toast.LENGTH_SHORT
+            ).show()
         }
         val button7: Button = findViewById(R.id.button7)
-        button7.setOnClickListener(object: View.OnClickListener {
+        button7.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                Toast.makeText(this@SecondActivity,
-                    "Button 7 clicked", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@SecondActivity,
+                    "Button 7 clicked", Toast.LENGTH_SHORT
+                ).show()
             }
         })
         val button8: Button = findViewById(R.id.button8)
@@ -45,7 +49,7 @@ class SecondActivity: AppCompatActivity(), View.OnClickListener {
             }
         })
         val button9: Button = findViewById(R.id.button9)
-        button9.setOnClickListener{ v ->
+        button9.setOnClickListener { v ->
             val button: Button = v as Button
             button.text = "1234567"
             button.setBackgroundColor(Color.BLACK)
@@ -55,14 +59,16 @@ class SecondActivity: AppCompatActivity(), View.OnClickListener {
 
     inner class Foo : View.OnClickListener {
         override fun onClick(v: View?) {
-            Toast.makeText(this@SecondActivity,
-                "Button 3 clicked", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this@SecondActivity,
+                "Button 3 clicked", Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
     override fun onClick(v: View?) {
         var message = ""
-        when( v!!.id) {
+        when (v!!.id) {
             R.id.button1 -> message = "1"
             R.id.button2 -> message = "2"
         }

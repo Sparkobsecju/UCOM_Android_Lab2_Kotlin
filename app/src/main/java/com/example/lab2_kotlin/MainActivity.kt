@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -86,6 +87,20 @@ class MainActivity : AppCompatActivity() {
             this, arrayOf(Manifest.permission.CALL_PHONE),
             CALL_PHONE_PERMISSION_CHECK
         )
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            realCallPhone()
+        } else {
+            val textView: TextView = findViewById(R.id.textView)
+            textView.text = "權限需要去設定reset, 同意才能繼續"
+        }
     }
 
 
