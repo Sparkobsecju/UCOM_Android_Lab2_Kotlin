@@ -54,10 +54,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun doPhone(v: View) {
-        checkPermission()
+        checkPhonePermission()
     }
 
-    private fun checkPermission() {
+    private fun checkPhonePermission() {
         if (ContextCompat.checkSelfPermission(
                 this,
                 Manifest.permission.CALL_PHONE
